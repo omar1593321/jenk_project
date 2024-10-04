@@ -1,9 +1,8 @@
 pipeline {
     agent any
     environment {
-    AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
-    AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
-    TF_VAR_region = 'us-east-1'  // Example Terraform variable
+    AWS_ACCESS_KEY_ID = credentials('AWS')
+    AWS_SECRET_ACCESS_KEY = credentials('AWS')     
     }
     stages {
         

@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    docker {
-            image 'hashicorp/terraform:1.5.0' 
-            args '-u root' }
     environment {
     AWS_ACCESS_KEY_ID = credentials('AWS')
     AWS_SECRET_ACCESS_KEY = credentials('AWS')     

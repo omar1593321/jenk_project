@@ -64,6 +64,7 @@
       get_url:
         url: https://github.com/omar1593321/jenk_project/blob/main/dockerfile
         dest: /home/ec2-user/dockerfile
+
     - name: Build Docker image from Dockerfile
       community.docker.docker_image:
         name: My-WebSite

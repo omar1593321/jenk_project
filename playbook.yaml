@@ -50,7 +50,7 @@
   tasks:
     - name: Copy docker_compose.yaml file
       copy:
-        src: /home/"your_user_name"/ansible_terra_project/docker-compose.yaml
+        src: /home/omar/jenk_project/docker-compose.yaml
         dest: /home/ec2-user/docker-compose.yaml
     - name: Docker Login 
       community.docker.docker_login: 

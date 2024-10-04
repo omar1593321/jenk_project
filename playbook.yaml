@@ -71,6 +71,27 @@
     - name: Start Container from compose
       community.docker.docker_compose:
         project_src: /home/ec2-user/    
-
+    - name: Copy dockerfile file
+      copy:
+        src: /home/omar/jenk_project/dockerfile
+        dest: /home/ec2-user/dockerfile
+    - name: Docker Login 
+      community.docker.docker_login: 
+        registry_url: https://index.docker.io/v1/
+        username: omar1593321
+        password: "{{docker_password}}"    
+    - name: Build Docker image from Dockerfile
+      community.docker.docker_image:
+        name: My-WebSite
+        path: /home/ec2-user/
+        tag: latest
+    - name: Run Docker container
+      community.docker.docker_container:
+        name: My-WebSite
+        image: My-WebSite:latest
+        state: started
+        ports:
+          - "80:80"
+        restart_policy: always  
 
           

@@ -11,7 +11,26 @@ pipeline {
                 sh 'terraform init'
             }
         }
-
+stage('Terraform Destroy') {
+            steps {
+                script {
+                    // Use the SSH key stored in Jenkins credentials
+                    withCredentials([
+    sshUserPrivateKey(credentialsId: 'aws-ssh-key', keyFileVariable: 'SSH_KEY_PATH'),
+    string(credentialsId: 'aws_access_key_id', variable: 'AWS_ACCESS_KEY_ID'),
+    string(credentialsId: 'aws_secret_access_key', variable: 'AWS_SECRET_ACCESS_KEY')
+]) {
+                        sh '''
+                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+    export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+                        terraform destroy -auto-approve \
+                        -var "ssh_private_key_path=$SSH_KEY_PATH" \
+             
+                        '''
+                    }
+                }
+            }
+        }
         stage('Terraform Plan') {
             steps {
                 script {

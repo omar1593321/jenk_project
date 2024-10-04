@@ -19,7 +19,7 @@ variable instance_type {
     type = string
     default = "t2.micro"
 }
-variable ssh_key {
+variable ssh_private_key_path {
     type = string
-    default = "path/to/your/key"
+    # default = "path/to/your/key"
 }

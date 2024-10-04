@@ -55,6 +55,12 @@ resource "aws_security_group" "myapp-sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   egress {
     from_port       = 0
@@ -106,7 +112,7 @@ output "server-ip" {
 resource "aws_instance" "myapp-server" {
   ami                         = data.aws_ami.amazon-linux-image.id
   instance_type               = var.instance_type
-  key_name                    = "put your key name"
+  key_name                    = rhcsa
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.myapp-subnet-1.id
   vpc_security_group_ids      = [aws_security_group.myapp-sg.id]
@@ -116,7 +122,7 @@ resource "aws_instance" "myapp-server" {
     Name = "${var.env_prefix}-server"
   }
  provisioner "local-exec" {
-  command = "ansible-playbook  --inventory ${self.public_ip}, --private-key ${var.ssh_key} --user ec2-user  playbook.yaml"
+  command = "ansible-playbook  --inventory ${self.public_ip}, --private-key ${var.ssh_private_key_path} --user ec2-user  playbook.yaml"
    
  }
 }

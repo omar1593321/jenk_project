@@ -49,8 +49,8 @@
     - vars 
   tasks:
     - name: Copy docker_compose.yaml from githup
-      get_url:
-        url: https://github.com/omar1593321/jenk_project/blob/main/docker-compose.yaml
+      copy:
+        src: /jenk_project/docker-compose.yaml
         dest: /home/ec2-user/docker-compose.yaml
     - name: Docker Login 
       community.docker.docker_login: 
@@ -61,8 +61,8 @@
       community.docker.docker_compose:
         project_src: /home/ec2-user/    
     - name: Copy dockerfile from githup
-      get_url:
-        url: https://github.com/omar1593321/jenk_project/blob/main/dockerfile
+      copy:
+        src: /jenk_project/dockerfile
         dest: /home/ec2-user/dockerfile
 
     - name: Build Docker image from Dockerfile

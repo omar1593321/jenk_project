@@ -48,9 +48,9 @@
   vars_files:
     - vars 
   tasks:
-    - name: Copy docker_compose.yaml file
-      copy:
-        src: /home/omar/jenk_project/docker-compose.yaml
+    - name: Copy docker_compose.yaml from githup
+      get_url:
+        url: https://github.com/omar1593321/jenk_project/blob/main/docker-compose.yaml
         dest: /home/ec2-user/docker-compose.yaml
     - name: Docker Login 
       community.docker.docker_login: 
@@ -60,9 +60,9 @@
     - name: Start Container from compose
       community.docker.docker_compose:
         project_src: /home/ec2-user/    
-    - name: Copy dockerfile file
-      copy:
-        src: /home/omar/jenk_project/dockerfile
+    - name: Copy dockerfile from githup
+      get_url:
+        url: https://github.com/omar1593321/jenk_project/blob/main/dockerfile
         dest: /home/ec2-user/dockerfile
     - name: Docker Login 
       community.docker.docker_login: 

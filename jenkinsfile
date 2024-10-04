@@ -16,8 +16,11 @@ pipeline {
             steps {
                 script {
                     // Use the SSH key stored in Jenkins credentials
-                    withCredentials([sshUserPrivateKey(credentialsId: 'aws-ssh-key', keyFileVariable: 'SSH_KEY_PATH')string(credentialsId: 'AWS', variable: 'AWS_ACCESS_KEY_ID'),
-                 string(credentialsId: 'AWS', variable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    withCredentials([
+    sshUserPrivateKey(credentialsId: 'aws-ssh-key', keyFileVariable: 'SSH_KEY_PATH'),
+    string(credentialsId: 'AWS', variable: 'AWS_ACCESS_KEY_ID'),
+    string(credentialsId: 'AWS', variable: 'AWS_SECRET_ACCESS_KEY')
+]) {
                         sh '''
                         terraform plan \
                         -var "ssh_private_key_path=$SSH_KEY_PATH" \
@@ -32,8 +35,11 @@ pipeline {
             steps {
                 script {
                     // Apply Terraform with SSH credentials passed from Jenkins
-                    withCredentials([sshUserPrivateKey(credentialsId: 'aws-ssh-key', keyFileVariable: 'SSH_KEY_PATH')string(credentialsId: 'AWS', variable: 'AWS_ACCESS_KEY_ID'),
-                 string(credentialsId: 'AWS', variable: 'AWS_SECRET_ACCESS_KEY')]) 
+                    withCredentials([
+    sshUserPrivateKey(credentialsId: 'aws-ssh-key', keyFileVariable: 'SSH_KEY_PATH'),
+    string(credentialsId: 'AWS', variable: 'AWS_ACCESS_KEY_ID'),
+    string(credentialsId: 'AWS', variable: 'AWS_SECRET_ACCESS_KEY')
+]) 
                  {
                         sh '''
                         terraform apply -auto-approve \

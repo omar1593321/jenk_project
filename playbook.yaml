@@ -64,11 +64,6 @@
       get_url:
         url: https://github.com/omar1593321/jenk_project/blob/main/dockerfile
         dest: /home/ec2-user/dockerfile
-    - name: Docker Login 
-      community.docker.docker_login: 
-        registry_url: https://index.docker.io/v1/
-        username: omar1593321
-        password: "{{docker_password}}"    
     - name: Build Docker image from Dockerfile
       community.docker.docker_image:
         name: My-WebSite

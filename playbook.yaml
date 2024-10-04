@@ -70,11 +70,12 @@
         name: My-WebSite
         path: /home/ec2-user/
         tag: latest
+        state: present
     - name: Run Docker container
       community.docker.docker_container:
         name: My-WebSite
         image: My-WebSite:latest
-        state: present
+        state: started
         ports:
           - "80:80"
         restart_policy: always  

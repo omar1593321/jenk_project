@@ -1,11 +1,12 @@
-pipeline{
+pipeline {
     agent any
     environment {
     AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
     AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
     TF_VAR_region = 'us-east-1'  // Example Terraform variable
-}
-    stage('Terraform Init') {
+    }
+    stages{
+    stage ('Terraform Init') {
             steps {
                 script {
                     
@@ -14,7 +15,7 @@ pipeline{
             }
         }
 
-        stage('Terraform Plan') {
+        stage ('Terraform Plan') {
             steps {
                 script {
                     
@@ -28,7 +29,7 @@ pipeline{
             }
         }
 
-        stage('Terraform Apply') {
+        stage ('Terraform Apply') {
             steps {
                 script {
                   
@@ -38,9 +39,10 @@ pipeline{
                         -var "ssh_private_key_path=$SSH_KEY_PATH" \
                         
                         '''
+                        }
+                    }
                 }
-            }
+             }
         }
     }
-}
 }

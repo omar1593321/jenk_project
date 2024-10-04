@@ -6,31 +6,41 @@ pipeline {
     TF_VAR_region = 'us-east-1'  // Example Terraform variable
     }
     stages {
-    stage ('Terraform Init') {
+        
+        stage('Terraform Init') {
             steps {
-                    sh 'terraform init'
+                sh 'terraform init'
             }
         }
-        stage ('Terraform Plan') {
+
+        stage('Terraform Plan') {
             steps {
+                script {
+                    // Use the SSH key stored in Jenkins credentials
                     withCredentials([sshUserPrivateKey(credentialsId: 'aws-ssh-key', keyFileVariable: 'SSH_KEY_PATH')]) {
                         sh '''
                         terraform plan \
                         -var "ssh_private_key_path=$SSH_KEY_PATH" \
+             
                         '''
+                    }
+                }
             }
         }
 
-        stage ('Terraform Apply') {
+        stage('Terraform Apply') {
             steps {
+                script {
+                    // Apply Terraform with SSH credentials passed from Jenkins
                     withCredentials([sshUserPrivateKey(credentialsId: 'aws-ssh-key', keyFileVariable: 'SSH_KEY_PATH')]) {
                         sh '''
                         terraform apply -auto-approve \
                         -var "ssh_private_key_path=$SSH_KEY_PATH" \
+         
                         '''
                     }
                 }
-             }
+            }
         }
     }
 }

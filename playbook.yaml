@@ -68,8 +68,10 @@
     - name: Build Docker image from Dockerfile
       community.docker.docker_image:
         name: My-WebSite
-        path: /home/ec2-user/
         source: build
+        build:
+          path: /home/ec2-user/
+          dockerfile: dockerfile
         tag: latest
         state: present
     - name: Run Docker container

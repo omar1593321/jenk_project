@@ -1,5 +1,8 @@
 # Project: Automated Website Deployment Using Jenkins, Terraform, Ansible, and Docker
 
+Our Goal:
+![Jenkins](https://github.com/user-attachments/assets/9346bf28-35aa-498c-b33c-aa821ad6e83b)
+
 This project demonstrates a complete CI/CD pipeline to provision and deploy infrastructure and applications using Jenkins, Terraform, AWS, Ansible, and Docker. The setup includes:
 
     Automated provisioning of an AWS VPC, subnets, EC2 instances, and security groups using Terraform.

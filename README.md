@@ -1,34 +1,4 @@
 # Project: Automated Website Deployment Using Jenkins, Terraform, Ansible, and Docker
-Overview
-
-This project demonstrates a complete CI/CD pipeline to provision and deploy infrastructure and applications using Jenkins, Terraform, AWS, Ansible, and Docker. The setup includes:
-
-    Automated provisioning of an AWS VPC, subnets, EC2 instances, and security groups using Terraform.
-    Automated configuration of the EC2 instances with Ansible, installing Docker, Docker Compose, and deploying a web application.
-    Deployment of a Docker container using Docker Compose, including a website, on the provisioned EC2 instance.
-
-Technologies Used
-
-    Jenkins: For orchestrating the CI/CD pipeline.
-    Terraform: To provision AWS infrastructure.
-    AWS: EC2, VPC, Security Groups.
-    Ansible: For configuration management on the EC2 instance.
-    Docker & Docker Compose: To containerize and deploy the web application.
-    Features
-
-    AWS Infrastructure: The project creates a custom VPC, subnets, security groups, an internet gateway, and EC2 instances.
-    CI/CD Pipeline: Jenkins automates the provisioning of infrastructure using Terraform and configures EC2 instances with Ansible.
-    Dockerized Web Application: The application is deployed inside a Docker container, managed using Docker Compose.
-
-Prerequisites
-
-    AWS account with proper IAM roles and permissions.
-    Jenkins set up with Terraform and Ansible plugins installed.
-    SSH key configured for accessing AWS EC2 instances.
-    Terraform, Ansible, Docker, and Docker Compose installed locally or in the Jenkins environment.
-    Certainly! Here's an expanded and detailed section about Jenkins for your GitHub repository post. This section will cover the Jenkins setup, configuration, integration with Terraform and Ansible, managing credentials, and ensuring smooth orchestration of your CI/CD pipeline.
-Project: Automated Website Deployment Using Jenkins, Terraform, Ansible, and Docker
-Overview
 
 This project demonstrates a complete CI/CD pipeline to provision and deploy infrastructure and applications using Jenkins, Terraform, AWS, Ansible, and Docker. The setup includes:
 
@@ -90,19 +60,24 @@ The playbook.yaml file is used to configure the EC2 instance by:
 5. Docker Compose Setup
 
 The docker-compose.yaml sets up the web application. After running the Ansible playbook, the container will be started automatically.
+![image](https://github.com/user-attachments/assets/c49f7be0-bb26-4b37-9710-1379457468e0)
+
+
 6. Jenkins Pipeline Stages
 
 The Jenkins pipeline consists of the following stages:
 
     Terraform Init: Initializes the Terraform configuration.
+    Terraform Destroy: Destroys the infrastructure when needed.
     Terraform Plan: Creates a plan for the infrastructure.
     Terraform Apply: Provisions the infrastructure.
-    Terraform Destroy: Destroys the infrastructure when needed.
     Ansible Setup: Configures EC2 instances and deploys Docker containers.
 
 7. Access the Web Application
 
 Once the pipeline completes, you can access the web application using the public IP of the EC2 instance on port 80.
+![image](https://github.com/user-attachments/assets/2b10b370-c04e-4bdc-a243-338c33f70fba)
+
 Detailed Jenkins Configuration
 1. Jenkins Installation and Setup
 
@@ -243,7 +218,7 @@ Key Points:
         Terraform Plan: Generates an execution plan for Terraform. Uses withCredentials to securely pass AWS and SSH credentials.
         Terraform Apply: Applies the Terraform plan to provision the infrastructure.
         Ansible Setup: Runs the Ansible playbook to configure the EC2 instances and deploy Docker containers.
-        Terraform Destroy: (Optional) Destroys the provisioned infrastructure. Useful for cleanup in testing environments.
+        Terraform Destroy:  Destroys the provisioned infrastructure. Useful for cleanup in testing environments.
 
     Credentials Management:
         withCredentials: Securely injects credentials into the pipeline steps without exposing them in logs.

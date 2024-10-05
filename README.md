@@ -44,18 +44,6 @@ Technologies Used
     Ansible: For configuration management on the EC2 instance.
     Docker & Docker Compose: To containerize and deploy the web application.
 
-Project Structure
-
-bash
-
-├── Jenkinsfile               # Jenkins pipeline script for automating the process
-├── main.tf                   # Terraform script to provision AWS infrastructure
-├── variables.tf              # Terraform variables
-├── playbook.yaml             # Ansible playbook for configuring EC2 and deploying the application
-├── docker-compose.yaml       # Docker Compose file for setting up Docker containers
-├── dockerfile                # Dockerfile for building the web application container
-└── README.md                 # Project documentation
-
 Features
 
     AWS Infrastructure: The project creates a custom VPC, subnets, security groups, an internet gateway, and EC2 instances.

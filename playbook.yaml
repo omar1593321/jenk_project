@@ -69,7 +69,7 @@
       community.docker.docker_image:
         name: My-WebSite
         path: /home/ec2-user/
-        source: dockerfile
+        source: build
         tag: latest
         state: present
     - name: Run Docker container

@@ -112,7 +112,7 @@ output "server-ip" {
 resource "aws_instance" "myapp-server" {
   ami                         = data.aws_ami.amazon-linux-image.id
   instance_type               = var.instance_type
-  key_name                    = "rhcsa"
+  key_name                    = "put_keyname"
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.myapp-subnet-1.id
   vpc_security_group_ids      = [aws_security_group.myapp-sg.id]

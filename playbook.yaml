@@ -67,7 +67,7 @@
 
     - name: Build Docker image from Dockerfile
       community.docker.docker_image:
-        name: My-WebSite
+        name: my-webSite
         source: build
         build:
           path: /home/ec2-user/
@@ -76,7 +76,7 @@
         state: present
     - name: Run Docker container
       community.docker.docker_container:
-        name: My-WebSite
+        name: my-webSite
         image: My-WebSite:latest
         state: started
         ports:

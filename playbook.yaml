@@ -77,7 +77,7 @@
     - name: Run Docker container
       community.docker.docker_container:
         name: my-website
-        image: My-Website:latest
+        image: my-website:latest
         state: started
         ports:
           - "80:80"
